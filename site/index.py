@@ -30,14 +30,50 @@ app.register_blueprint(
 )
 
 
+global_context = {
+    'features': [
+        {
+            'url': '/01-basic-rendering',
+            'title': '01 - Basic rendering'
+        },
+        {
+            'url': '/02-basic-panel-with-pages',
+            'title': '02 - Basic Panel with Pages'
+        },
+        {
+            'url': '/mini-viewer',
+            'title': 'Mini Viewer'
+        },
+        {
+            'url': '/slow-queries',
+            'title': 'Slow Queries in Document Viewer'
+        },
+        {
+            'url': '/dual-panel-viewer',
+            'title': 'Dual Panel Viewer'
+        },
+        {
+            'url': '/selections-and-actions',
+            'title': 'Selections and Actions'
+        }
+    ]
+}
+
+
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template(
+        "index.html",
+        **global_context
+    )
 
 
-@app.route('/basic-rendering')
+@app.route('/01-basic-rendering')
 def basic_rendering():
-    return render_template("features/basic-rendering.html")
+    return render_template(
+        "features/01-basic-rendering.html",
+        **global_context
+    )
 
 
 @app.route('/basic-panel-with-nodes')

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/01-basic-rendering.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>01 - Basic Rendering</h1>
+    <p>
+        Page is basic unit of document viewer. Basically all what DV does - it
+        displays a bunch of pages. This usecase makes sure that at very least
+        you can instanciate a Page instance and render it, as in example
+        below:
+    </p>
+    <p>
+        Result:
+    </p>
+    <div class="example">
+        <div id="page"></div>
+    </div>
+  </main>
+{% endblock %}
