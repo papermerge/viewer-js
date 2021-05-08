@@ -2,9 +2,7 @@ import { View } from "symposium";
 import { renderman } from "../../renderman";
 
 import {
-    EV_DOCUMENT_CLICKED,
-    EV_FOLDER_CLICKED,
-    EV_NODE_SELECTED,
+    EV_PANEL_ITEM_SELECTED,
 } from "../../events";
 
 
@@ -18,11 +16,11 @@ class PanelBaseView extends View {
     }
 
     constructor({
-        model,
+        collection,
         options={}
     }) {
         super(options);
-        this.model = model;
+        this.collection = collection;
         this.options = Object.assign({}, this.default_options, options);
 
         this.el = this.options['el'];
@@ -31,17 +29,16 @@ class PanelBaseView extends View {
     events() {
         // DOM events
         let event_map = {
-            "click .node > input[type=checkbox]": "on_node_selected",
-            "click .node": "on_node_clicked",
-            "click .node.title > a": "on_node_clicked"
+            "click .item > input[type=checkbox]": "on_item_selected",
+            "click .item": "on_item_clicked",
         }
         return event_map;
     }
 
-    on_node_selected(event) {
+    on_item_selected(event) {
         let current_target = event.currentTarget,
-            node_id,
-            node,
+            item_id,
+            item,
             new_state,
             parent,
             current_selection;
@@ -54,60 +51,56 @@ class PanelBaseView extends View {
             return;
         }
 
-        node_id = parent.dataset.id;
-        if (!this.model) {
+        item_id = parent.dataset.id;
+        if (!this.collection) {
             return;
         }
-        node = this.model.get_node({id: node_id});
+        item = this.collection.get({id: item_id});
 
-        if (!node) {
-            console.error(`Node not found for target ${current_target}`);
+        if (!item) {
+            console.error(`Item not found for target ${current_target}`);
             return;
         }
 
-        new_state = node.toggle_selection();
+        new_state = item.toggle_selection();
         if (new_state) {
             parent.classList.add('checked');
         } else {
             parent.classList.remove('checked');
         }
 
-        current_selection = this.model.get_selection();
+        current_selection = this.collection.filter(
+            (item) => { return item.is_selected; }
+        );
 
         this.trigger(
-            EV_NODE_SELECTED,
+            EV_PANEL_ITEM_SELECTED,
             {
-                node:node,
+                item:item,
                 selection:current_selection
             }
         );
     }
 
-    on_node_clicked(event) {
+    on_item_clicked(event) {
         let target = event.currentTarget,
-            node_id,
-            node;
+            item_id,
+            item;
 
         if (event.target.type == "checkbox") {
-            // user clicked node's checkbox, which is not the concern
-            // of current event handler. Instead `on_node_selected`
+            // user clicked item's checkbox, which is not the concern
+            // of current event handler. Instead `on_item_selected`
             // handler will should process this event.
             return;
         }
 
         event.preventDefault();
         // vanilla js equivalent of $(...).data('id');
-        node_id = target.dataset.id;
-        if (!this.model) {
+        item_id = target.dataset.id;
+        if (!this.collection) {
             return;
         }
-        node = this.model.get_node({id: node_id});
-
-        if (node.is_document) {
-            this.trigger(EV_DOCUMENT_CLICKED, node);
-        } else {
-            this.trigger(EV_FOLDER_CLICKED, node);
-        }
+        item = this.collection.get({id: item_id});
     }
 
     show_loader() {
@@ -141,10 +134,10 @@ class PanelBaseView extends View {
         let html_panel = "",
             context = {};
 
-        if (!this.model) {
+        if (!this.collection) {
             return html_panel;
         }
-        context['nodes'] = this.model.nodes;
+        context['objects'] = this.collection;
         html_panel = renderman.render(
             this.template_name,
             context

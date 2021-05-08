@@ -6,7 +6,6 @@ import {
     Folder,
     Page,
     Thumbnail,
-    Panel,
 } from "./models/index";
 import {
     PanelView,
@@ -21,7 +20,6 @@ export {
     Folder,
     Page,
     Thumbnail,
-    Panel,
     PanelView,
     CommanderPanelView,
     Collection,

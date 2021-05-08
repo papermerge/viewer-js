@@ -28,7 +28,7 @@ class Thumbnail extends Model {
     }
 
     toString() {
-        return `Thumbnail(id=${this.id})`;
+        return `Thumbnail(id=${this.id}, page_num=${this.page_num})`;
     }
 
     get is_selected() {
