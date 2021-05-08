@@ -2,7 +2,7 @@
     display: flex;
 }
 
-.panel.list {
+.panel.thumbnails {
     flex-direction: column;
 
     .node {
@@ -24,8 +24,8 @@
     }
 }
 
-.panel.grid {
-    flex-direction: row;
+.panel.pages {
+    flex-direction: column;
     flex-wrap: wrap;
 
     .node {

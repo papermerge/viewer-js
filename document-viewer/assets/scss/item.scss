@@ -10,23 +10,13 @@
     margin: 1rem;
 }
 
-.node {
+.item {
 
     display: flex;
 
     .icon {
         width: 4rem;
         height: 3rem;
-    }
-
-    .icon.folder {
-        background-image: url("../img/folder.svg");
-        background-size: 100% 88%;
-    }
-
-    .icon.document {
-        background-image: url("../img/document.svg");
-        background-size: 100% 100%;
     }
 
     &.checked {

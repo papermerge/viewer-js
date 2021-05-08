@@ -78,7 +78,10 @@ def basic_rendering():
 
 @app.route('/02-basic-panel-with-items')
 def basic_panel_with_nodes():
-    return render_template("features/02-basic-panel-with-items.html")
+    return render_template(
+        "features/02-basic-panel-with-items.html",
+        **global_context
+    )
 
 
 @app.route('/about')
