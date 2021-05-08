@@ -1,5 +1,12 @@
 .page-thumbnail {
     border: 1px solid #ccc;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+
     // preserves aspect ratio of DIN A4, A5 pages
     // A4 aspect ratio = 1,41
     &.portrait {
@@ -9,5 +16,10 @@
     &.landscape {
         width: 7rem;
         height: 5rem;
+    }
+
+    .page-number {
+        position: absolute;
+        bottom: -1.5rem;
     }
 }
