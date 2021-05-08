@@ -1,0 +1,11 @@
+<div class="panel thumbnails">
+    {% for item in items %}
+        <div class="thumbnail" data-id="{{obj.id}}">
+            <div class="icon"></div>
+            <input type="checkbox" name="_selected_action" value="{{ obj.id }}" class="action-select">
+            <div class="page-number">
+                {{ obj.page_num }}
+            </div>
+        </div>
+    {% endfor %}
+</div>

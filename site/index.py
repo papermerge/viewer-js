@@ -37,8 +37,8 @@ global_context = {
             'title': '01 - Basic rendering'
         },
         {
-            'url': '/02-basic-panel-with-pages',
-            'title': '02 - Basic Panel with Pages'
+            'url': '/02-basic-panel-with-items',
+            'title': '02 - Basic Panel with Items'
         },
         {
             'url': '/mini-viewer',
@@ -76,9 +76,9 @@ def basic_rendering():
     )
 
 
-@app.route('/basic-panel-with-nodes')
+@app.route('/02-basic-panel-with-items')
 def basic_panel_with_nodes():
-    return render_template("features/basic-panel-with-nodes.html")
+    return render_template("features/02-basic-panel-with-items.html")
 
 
 @app.route('/about')
