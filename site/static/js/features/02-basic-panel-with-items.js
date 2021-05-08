@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
     thumbnails_panel,
     thumbnails_panel_html,
     thumbnails_panel_view,
-    col2,
+    pages,
     pages_panel,
     pages_panel_view,
     pages_panel_html;
