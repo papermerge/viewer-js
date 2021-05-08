@@ -8,8 +8,8 @@ window.addEventListener('DOMContentLoaded', () => {
         div_thumbnail;
 
     DV = DocumentViewer;
-    page = new DV.Page({id: 2});
-    thumbnail = new DV.Thumbnail({id: 2});
+    page = new DV.Page({id: 2, page_num: 2});
+    thumbnail = new DV.Thumbnail({id: 2, page_num: 2});
 
     page_html = DV.renderman.render(
         "page.html",  // path to the template
