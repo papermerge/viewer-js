@@ -5,6 +5,7 @@ import {
     Document,
     Folder,
     Page,
+    Thumbnail,
     Panel,
 } from "./models/index";
 import {
@@ -19,6 +20,7 @@ export {
     Document,
     Folder,
     Page,
+    Thumbnail,
     Panel,
     PanelView,
     CommanderPanelView,
