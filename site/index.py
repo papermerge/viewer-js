@@ -86,7 +86,10 @@ def basic_panel_with_nodes():
 
 @app.route('/about')
 def about():
-    return render_template("about.html")
+    return render_template(
+        "about.html",
+        **global_context
+    )
 
 
 @app.route('/favicon.ico')
