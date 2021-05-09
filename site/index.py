@@ -5,15 +5,15 @@ from flask import (
     render_template,
     send_from_directory
 )
-from app.browser import create_blueprint
+from app.viewer import create_blueprint
 
 app = Flask(__name__)
 
 app.jinja_env.auto_reload = True
 
 app.register_blueprint(
-    create_blueprint('mini-browser', request_delay=0.2),
-    url_prefix='/mini-browser'
+    create_blueprint('mini-viewer', request_delay=0.1),
+    url_prefix='/03-mini-viewer'
 )
 app.register_blueprint(
     # Simulate slow requests. Each request will take `request_delay` seconds.
@@ -41,8 +41,8 @@ global_context = {
             'title': '02 - Basic Panel with Items'
         },
         {
-            'url': '/mini-viewer',
-            'title': 'Mini Viewer'
+            'url': '/03-mini-viewer',
+            'title': '03 - Mini Viewer'
         },
         {
             'url': '/slow-queries',

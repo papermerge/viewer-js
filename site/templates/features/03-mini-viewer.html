@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/03-mini-viewer.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>Mini Viewer</h1>
+    <p>
+    Very basic document viewer
+    </p>
+    <div class="example">
+        <h3>Mini viewer (panel is in grid mode)</h3>
+      <div id="viewer">
+        <div id="thumbnails_panel">
+        </div>
+        <div id="pages_panel">
+        </div>
+      </div> <!-- viewer -->
+    </div>
+  </main>
+{% endblock %}
