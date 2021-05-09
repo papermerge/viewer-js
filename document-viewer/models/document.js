@@ -1,19 +1,18 @@
-import { Node } from "./node";
+import { Model } from "symposium";
+
 import { urlconf } from "../urls";
 
 
-class Document extends Node {
+class Document extends Model {
+
+    constructor({id, title}) {
+        super();
+        this.id = id;
+        this.title = title;
+    }
 
     toString() {
         return `Document(id=${this.id}, title=${this.title}, ...)`;
-    }
-
-    get is_document() {
-        return true;
-    }
-
-    get is_folder() {
-        return false;
     }
 
     get href() {

@@ -17,6 +17,7 @@ import {
 class DocumentPanelView extends View {
 
     constructor(options={}) {
+
         super();
         this.thumbnails_col = new Collection();
         this.thumbnails_view = new PanelView({

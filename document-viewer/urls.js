@@ -7,25 +7,8 @@ class UrlConf {
      * Central point for managing urls.
      */
 
-    constructor(prefix="/browser") {
+    constructor(prefix="/viewer") {
         this.prefix = prefix;
-    }
-
-    folder_url(folder) {
-        /**
-         * `folder` parameter can be a `models.Folder` instance or
-         * `undefined`. Latter means that user clicked root folder.
-         */
-        let folder_id = ""; // empty string in case of root folder.
-
-        if (folder instanceof Folder) {
-            folder_id = folder.id;
-        } else if (folder) {
-            // i.e. folder != undefined
-            folder_id = folder;
-        }
-        // folder_id here can be empty string!
-        return `${this.prefix}/folder/${folder_id}`;
     }
 
     document_url(doc) {
