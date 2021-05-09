@@ -3,7 +3,7 @@ import { Collection, View } from "symposium";
 import { PanelView } from "./panel/index";
 import { CtxMenuView } from "./ctx_menu";
 import { CtxMenu } from "../models/ctx_menu";
-import { fetch_children } from "../requests";
+import { fetch_document } from "../requests";
 import { default_actions } from "../default_actions";
 /*
 import {
