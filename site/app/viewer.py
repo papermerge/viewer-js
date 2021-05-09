@@ -10,7 +10,7 @@ from flask import (
 
 def _get_template_name(req):
     name_with_slashes = req.url_rule.rule
-    template_name = name_with_slashes.replace('/', '')
+    template_name = name_with_slashes.split('/')[1]
 
     return f"{template_name}.html"
 

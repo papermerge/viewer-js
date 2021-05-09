@@ -78,21 +78,6 @@ class DocumentPanelView extends View {
         });
     }
 
-    folder_clicked(folder) {
-        let that = this;
-
-        this.start_folder_clicked_feedback();
-        // notice that `folder` parameter here might be `undefined`
-        // (which means that user clicked the root folder).
-        fetch_children(folder).then((nodes) => {
-            that.panel_model.reset(nodes);
-            that.stop_folder_clicked_feedback();
-        }).catch((error) => {
-            that.stop_folder_clicked_feedback();
-            alert(`Error while fetchinf folder '${folder}': ${error}`);
-        });
-    }
-
     document_clicked(doc) {
         // Panel does not know (and rightfully so)
         // what to do when document was clicked. Just

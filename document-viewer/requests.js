@@ -1,5 +1,5 @@
 import { Collection } from "symposium";
-import { Document } from "./models/index";
+import { Page } from "./models/index";
 import { urlconf } from "./urls";
 
 
@@ -28,7 +28,7 @@ function fetch_document(doc) {
         });
         pages_col.add(pages_arr);
 
-        return pages;
+        return pages_col;
     });
 
     return response;
