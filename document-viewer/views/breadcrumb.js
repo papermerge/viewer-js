@@ -4,10 +4,11 @@ import { urlconf } from "../urls";
 
 import { Breadcrumb } from "../models/breadcrumb";
 
+/*
 import {
     EV_FOLDER_CLICKED,
 } from "../events";
-
+*/
 
 
 const DEFAULT_TEMPLATE_NAME = "templates/breadcrumb.html";
@@ -54,7 +55,7 @@ class BreadcrumbView extends View {
 
         // If user clicked root folder, node will be `undefined`.
         // Root breadcrumb item does not have dataset id attribute set.
-        this.trigger(EV_FOLDER_CLICKED, node);
+        //this.trigger(EV_FOLDER_CLICKED, node);
     }
 
     render_to_string() {

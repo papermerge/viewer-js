@@ -9,7 +9,7 @@ import {
 } from "./models/index";
 import {
     PanelView,
-    CommanderPanelView,
+    DocumentPanelView,
 } from "./views/index";
 import { renderman } from "./renderman";
 import { urlconf } from "./urls";
@@ -21,7 +21,7 @@ export {
     Page,
     Thumbnail,
     PanelView,
-    CommanderPanelView,
+    DocumentPanelView,
     Collection,
     urlconf
 };

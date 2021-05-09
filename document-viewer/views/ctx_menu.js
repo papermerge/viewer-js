@@ -3,10 +3,11 @@ import { View } from "symposium";
 import { renderman } from "../renderman";
 import { CtxMenu } from "../models/ctx_menu";
 
+/*
 import {
     EV_ACTION_CLICKED,
 } from "../events";
-
+*/
 
 
 const DEFAULT_TEMPLATE_NAME = "templates/ctx_menu.html";
@@ -67,7 +68,7 @@ class CtxMenuView extends View {
 
         // If user clicked root folder, node will be `undefined`.
         // Root breadcrumb item does not have dataset id attribute set.
-        this.trigger(EV_ACTION_CLICKED, item);
+        //this.trigger(EV_ACTION_CLICKED, item);
         this._dropdown_toggle();
     }
 
