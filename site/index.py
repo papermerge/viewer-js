@@ -5,7 +5,10 @@ from flask import (
     render_template,
     send_from_directory
 )
-from app.viewer import create_blueprint
+from app.viewer import (
+    create_blueprint,
+    global_context
+)
 
 app = Flask(__name__)
 
@@ -28,36 +31,6 @@ app.register_blueprint(
     create_blueprint('selections-and-actions', request_delay=0.3),
     url_prefix='/selections-and-actions'
 )
-
-
-global_context = {
-    'features': [
-        {
-            'url': '/01-basic-rendering',
-            'title': '01 - Basic rendering'
-        },
-        {
-            'url': '/02-basic-panel-with-items',
-            'title': '02 - Basic Panel with Items'
-        },
-        {
-            'url': '/03-mini-viewer',
-            'title': '03 - Mini Viewer'
-        },
-        {
-            'url': '/slow-queries',
-            'title': 'Slow Queries in Document Viewer'
-        },
-        {
-            'url': '/dual-panel-viewer',
-            'title': 'Dual Panel Viewer'
-        },
-        {
-            'url': '/selections-and-actions',
-            'title': 'Selections and Actions'
-        }
-    ]
-}
 
 
 @app.route('/')

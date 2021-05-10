@@ -8,6 +8,36 @@ from flask import (
 )
 
 
+global_context = {
+    'features': [
+        {
+            'url': '/01-basic-rendering',
+            'title': '01 - Basic rendering'
+        },
+        {
+            'url': '/02-basic-panel-with-items',
+            'title': '02 - Basic Panel with Items'
+        },
+        {
+            'url': '/03-mini-viewer',
+            'title': '03 - Mini Viewer'
+        },
+        {
+            'url': '/slow-queries',
+            'title': 'Slow Queries in Document Viewer'
+        },
+        {
+            'url': '/dual-panel-viewer',
+            'title': 'Dual Panel Viewer'
+        },
+        {
+            'url': '/selections-and-actions',
+            'title': 'Selections and Actions'
+        }
+    ]
+}
+
+
 def _get_template_name(req):
     name_with_slashes = req.url_rule.rule
     template_name = name_with_slashes.split('/')[1]
@@ -30,10 +60,21 @@ DOCUMENT = {
         'pages': [
             {
                 'id': 1,
-                'title': 'payment_1.pdf'
+                'page_num': 1
+            },
+            {
+                'id': 2,
+                'page_num': 2
+            },
+            {
+                'id': 3,
+                'page_num': 3
+            },
+            {
+                'id': 4,
+                'page_num': 4
             }
-        ],
-        'ancestor_nodes': []
+        ],  # pages
     },
 }
 
@@ -62,7 +103,10 @@ def create_blueprint(name, request_delay=0):
     def viewer():
         template_name = f"features/{_get_template_name(request)}"
         time.sleep(request_delay)
-        return render_template(template_name)
+        return render_template(
+            template_name,
+            **global_context
+        )
 
     @blueprint.route('/document/<int:document_id>')
     def browser_document(document_id):

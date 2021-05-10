@@ -1,11 +1,28 @@
 import { PanelBaseView } from "./base";
 
-const DEFAULT_TEMPLATE_NAME = "templates/panel/grid.html";
+const PAGES_TEMPLATE_NAME = "templates/panel/pages.html";
+const THUMBNAILS_TEMPLATE_NAME = "templates/panel/thumbnails.html";
 
-class PanelView extends PanelBaseView {
+
+class ThumbnailsPanelView extends PanelBaseView {
 
     get template_name() {
-        return  this.options['template_name'] || DEFAULT_TEMPLATE_NAME;
+        return this.options['template_name'] || THUMBNAILS_TEMPLATE_NAME;
+    }
+
+    constructor({
+        collection,
+        options={}
+    }) {
+        super({collection, options});
+    }
+};
+
+
+class PagesPanelView extends PanelBaseView {
+
+    get template_name() {
+        return this.options['template_name'] || PAGES_TEMPLATE_NAME;
     }
 
     constructor({
@@ -15,7 +32,17 @@ class PanelView extends PanelBaseView {
         super({collection, options});
     }
 
+    scroll_to(page_id) {
+        let dom_item;
+
+        dom_item = this.el.querySelector(`.item.page[data-id='${page_id}']`);
+
+        console.log(dom_item);
+        if (dom_item) {
+            dom_item.scrollIntoView();
+        }
+    }
 };
 
 
-export { PanelView };
+export { ThumbnailsPanelView, PagesPanelView };

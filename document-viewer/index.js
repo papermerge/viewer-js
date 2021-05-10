@@ -6,10 +6,7 @@ import {
     Page,
     Thumbnail,
 } from "./models/index";
-import {
-    PanelView,
-    DocumentPanelView,
-} from "./views/index";
+import { DocumentPanelView } from "./views/index";
 import { renderman } from "./renderman";
 import { urlconf } from "./urls";
 
@@ -18,7 +15,6 @@ export {
     Document,
     Page,
     Thumbnail,
-    PanelView,
     DocumentPanelView,
     Collection,
     urlconf

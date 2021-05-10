@@ -3,7 +3,12 @@ import { renderman } from "../../renderman";
 
 import {
     EV_PANEL_ITEM_SELECTED,
+    EV_PANEL_ITEM_CLICK,
+    EV_PANEL_ITEM_DBLCLICK
 } from "../../events";
+
+
+const CLICK_TIMEOUT = 250; // miliseconds
 
 
 class PanelBaseView extends View {
@@ -31,6 +36,7 @@ class PanelBaseView extends View {
         let event_map = {
             "click .item > input[type=checkbox]": "on_item_selected",
             "click .item": "on_item_clicked",
+            "dblclick .item": "on_item_dblclick"
         }
         return event_map;
     }
@@ -85,7 +91,8 @@ class PanelBaseView extends View {
     on_item_clicked(event) {
         let target = event.currentTarget,
             item_id,
-            item;
+            item,
+            that = this;
 
         if (event.target.type == "checkbox") {
             // user clicked item's checkbox, which is not the concern
@@ -101,6 +108,45 @@ class PanelBaseView extends View {
             return;
         }
         item = this.collection.get({id: item_id});
+
+        // single click or dblclick?
+        if (this.timer) {
+            // This way, if click is already set to fire,
+            // it will clear itself to avoid duplicate 'Single' alerts.
+            clearTimeout(this.timer);
+        }
+        this.timer = setTimeout(
+            function() {
+                that.trigger(
+                    EV_PANEL_ITEM_CLICK,
+                    item
+                );
+            },
+            CLICK_TIMEOUT
+        );
+    }
+
+    on_item_dblclick(event) {
+        let target = event.currentTarget,
+            item_id,
+            item;
+
+        event.preventDefault();
+        // vanilla js equivalent of $(...).data('id');
+        item_id = target.dataset.id;
+        if (!this.collection) {
+            return;
+        }
+        item = this.collection.get({id: item_id});
+
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+        console.log(`triggering dblclick for ${item}`);
+        this.trigger(
+            EV_PANEL_ITEM_DBLCLICK,
+            item
+        );
     }
 
     show_loader() {
