@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
         new DV.Thumbnail({id: 2, page_num: 2}),
         new DV.Thumbnail({id: 3, page_num: 3})
     ]);
-    thumbnails_panel_view = new DV.PanelView({
+    thumbnails_panel_view = new DV.ThumbnailsPanelView({
         collection: thumbnails,
         options: {
             'template_name': 'templates/panel/thumbnails.html'
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
         new DV.Page({id: 2, page_num: 2}),
         new DV.Page({id: 3, page_num: 3})
     ]);
-    pages_panel_view = new DV.PanelView({
+    pages_panel_view = new DV.PagesPanelView({
         collection: pages,
         options: {
             'template_name': 'templates/panel/pages.html'

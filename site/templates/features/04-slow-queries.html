@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/04-slow-queries.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>Slow Quering</h1>
+    <p>
+        In this scenario we check how viewer loads when server side queries are very slow. Here we introduce pages as SVG images.
+        Basicaly to load a four pages document it means to fetch
+        from the server four SVG images and display them (one image per page).
+    </p>
+    <div class="showroom">
+        <h3>Mini Viewer (+ slow server side)</h3>
+        <div id="breadcrumb">
+        </div>
+        <div id="document-panel">
+            <div id="thumbnails-panel">
+            </div>
+            <div id="pages-panel">
+            </div>
+        </div> <!-- viewer -->
+    </div>
+  </main>
+{% endblock %}

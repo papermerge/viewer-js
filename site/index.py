@@ -18,15 +18,18 @@ app.register_blueprint(
     create_blueprint('mini-viewer', request_delay=0.1),
     url_prefix='/03-mini-viewer'
 )
+
 app.register_blueprint(
     # Simulate slow requests. Each request will take `request_delay` seconds.
-    create_blueprint('slow-quesries-browsing', request_delay=4),
-    url_prefix='/slow-queries-browsing'
+    create_blueprint('04-slow-quesries', request_delay=4),
+    url_prefix='/04-slow-queries'
 )
+
 app.register_blueprint(
-    create_blueprint('dual-panel-browsing', request_delay=0.4),
-    url_prefix='/dual-panel-browsing'
+    create_blueprint('05-zoom-in-zoom-out', request_delay=0.4),
+    url_prefix='/05-zoom-in-zoom-out'
 )
+
 app.register_blueprint(
     create_blueprint('selections-and-actions', request_delay=0.3),
     url_prefix='/selections-and-actions'

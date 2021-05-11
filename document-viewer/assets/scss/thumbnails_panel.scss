@@ -2,21 +2,23 @@
 
 #thumbnails-panel {
 
-    .page-thumbnail {
-        border: 1px solid #ccc;
 
-        @include panel-item;
+}
 
-        // preserves aspect ratio of DIN A4, A5 pages
-        // A4 aspect ratio = 1,41
-        &.portrait {
-            width: 5rem;
-            height: 7rem;
-        }
-        &.landscape {
-            width: 7rem;
-            height: 5rem;
-        }
+.page-thumbnail {
+    border: 1px solid #ccc;
+
+    @include panel-item;
+
+    // preserves aspect ratio of DIN A4, A5 pages
+    // A4 aspect ratio = 1,41
+    &.portrait {
+        width: 5rem;
+        height: 7rem;
+    }
+    &.landscape {
+        width: 7rem;
+        height: 5rem;
     }
 }
 

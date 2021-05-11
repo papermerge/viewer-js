@@ -23,12 +23,12 @@ global_context = {
             'title': '03 - Mini Viewer'
         },
         {
-            'url': '/slow-queries',
-            'title': 'Slow Queries in Document Viewer'
+            'url': '/04-slow-queries',
+            'title': '04 - Slow Queries'
         },
         {
-            'url': '/dual-panel-viewer',
-            'title': 'Dual Panel Viewer'
+            'url': '/05-zoom-in-zoom-out',
+            'title': '05 - Zoom In/Zoom Out'
         },
         {
             'url': '/selections-and-actions',
