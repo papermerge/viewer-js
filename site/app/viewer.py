@@ -45,12 +45,21 @@ def _get_template_name(req):
     return f"{template_name}.html"
 
 
-def _static_folder_abs_path():
+def _folder_abs_path(folder_name):
     """
-    Returns absolute path to the static folder.
-    Static folder is same as the one used by the app.
+    Returns absolute path given folder name.
+
+    Example:
+
+    _folder_abs_path("static") => absolute path to static folder
+    _folder_abs_path("media")  => absolute path to media folder
     """
-    abs_path = os.path.join(os.path.dirname(__file__), '..', 'static')
+    abs_path = os.path.join(
+        os.path.dirname(__file__),
+        '..',
+        folder_name
+    )
+
     return abs_path
 
 
@@ -79,6 +88,28 @@ DOCUMENT = {
 }
 
 
+def page_svg(page_id):
+    """
+    Returns the SVG image (XML SVG content) of given page_id.
+
+    It reads SVG file from media folder.
+    """
+    abs_path = _folder_abs_path("media")
+    svg_file_path = os.path.join(
+        abs_path,
+        "document-1",
+        f"page-{page_id}.svg"
+    )
+
+    # We have absolute path to the SVG file.
+    # Now just read the actual file content.
+    content = ""
+    with open(svg_file_path, "r") as f:
+        content = f.read()
+
+    return content
+
+
 def create_blueprint(name, request_delay=0):
     """
     Create a blueprint with options.
@@ -90,17 +121,19 @@ def create_blueprint(name, request_delay=0):
 
     # Reusable app. It provides views for following URLS:
     #  - /
-    #  - /document/<int:node_id>
+    #  - /document/<int:document_id>
+    #  - /page/<int:page_id>
     blueprint = Blueprint(
         name,  # unique name
         name,  # import_name
         template_folder='templates',  # same folder as for the main app
-        static_folder=_static_folder_abs_path()  # same as for main app
+        static_folder=_folder_abs_path("static")  # same as for main app
 
     )
 
     @blueprint.route('/')
     def viewer():
+
         template_name = f"features/{_get_template_name(request)}"
         time.sleep(request_delay)
         return render_template(
@@ -110,6 +143,7 @@ def create_blueprint(name, request_delay=0):
 
     @blueprint.route('/document/<int:document_id>')
     def browser_document(document_id):
+
         time.sleep(request_delay)
         template_name = f"features/{_get_template_name(request)}"
         document_dict = DOCUMENT.get(document_id, None)
@@ -125,5 +159,15 @@ def create_blueprint(name, request_delay=0):
             template_name,
             **document_dict
         )
+
+    @blueprint.route('/page/<int:page_id>')
+    def browser_page(page_id):
+
+        time.sleep(request_delay)
+        content_type = request.headers.get('Content-Type')
+        if content_type and content_type == 'image/svg+xml':
+            return page_svg(page_id)
+
+        return render_template("404.html"), 404
 
     return blueprint

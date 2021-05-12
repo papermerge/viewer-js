@@ -21,7 +21,7 @@ app.register_blueprint(
 
 app.register_blueprint(
     # Simulate slow requests. Each request will take `request_delay` seconds.
-    create_blueprint('04-slow-quesries', request_delay=4),
+    create_blueprint('04-slow-quesries', request_delay=0.5),
     url_prefix='/04-slow-queries'
 )
 

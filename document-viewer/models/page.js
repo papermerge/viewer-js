@@ -11,6 +11,7 @@ class Page extends Model {
         this.id = id;
         this.page_num = page_num;
         this.cpage_num = page_num;
+        this._svg_image = undefined;
         this.metadata = metadata;
         this.selected = false;
     }
@@ -26,6 +27,15 @@ class Page extends Model {
     toggle_selection() {
         this.selected = !this.selected;
         return this.selected;
+    }
+
+    set svg_image(text) {
+        this._svg_image = text;
+        this.trigger("change:svg_image", this);
+    }
+
+    get svg_image() {
+        return this._svg_image;
     }
 }
 
