@@ -56,6 +56,12 @@ function fetch_page_svg(page) {
     url = urlconf.page_url(page);
 
     response = fetch(url, options).then((response) => {
+        if (response.status != 200) {
+            throw new Error(response.statusText);
+        }
+        // response.text() returns a Promise!
+        return response.text();
+    }).then((response) => {
         page.svg_image = response;
     });
 }

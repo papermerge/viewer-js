@@ -31,7 +31,7 @@ class Page extends Model {
 
     set svg_image(text) {
         this._svg_image = text;
-        this.trigger("change:svg_image", this);
+        this.trigger("change", this);
     }
 
     get svg_image() {

@@ -41,7 +41,7 @@ class DocumentPanelView extends View {
         });
         this.options = options;
 
-        this.pages_col.on("change:svg_image", this.on_svg_load, this);
+        this.pages_col.on("change", this.on_svg_load, this);
         this.pages_col.on("reset", this.on_pages_reset, this);
 
         this.thumbnails_col.on("change", this.render_thumbnails_panel, this);

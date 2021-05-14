@@ -1,4 +1,5 @@
 import { PanelBaseView } from "./base";
+import { renderman } from "../../renderman";
 
 const PAGES_TEMPLATE_NAME = "templates/panel/pages.html";
 const THUMBNAILS_TEMPLATE_NAME = "templates/panel/thumbnails.html";
@@ -41,6 +42,27 @@ class PagesPanelView extends PanelBaseView {
         if (dom_item) {
             dom_item.scrollIntoView();
         }
+    }
+
+    render(page) {
+        let panel_html,
+            page_view,
+            page_html,
+            page_div;
+
+        // render entire collection of pages
+        if (!page) {
+            return super.render();
+        }
+
+        if (this.el) {
+            page_div = this.el.querySelector(`[data-id='${page.id}'] > .svg-container`);
+            if (page_div) {
+                page_div.innerHTML = page.svg_image;
+            }
+        }
+
+        return page_html;
     }
 };
 
