@@ -19,6 +19,8 @@ def create_app(delay_seconds=0, no_cache=False):
     Creates flask app.
 
     :param delay_seconds: delays ALL requests with this number of seconds
+    :param no_cache: if True will intruct browsers to NOT use cache i.e.
+        NOT to store pages (js,css,images)
     """
     app = Flask(__name__)
 
