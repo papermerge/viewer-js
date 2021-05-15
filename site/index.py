@@ -1,78 +1,105 @@
 import os
+import time
+from argparse import ArgumentParser
 
 from flask import (
     Flask,
     render_template,
     send_from_directory
 )
+
 from app.viewer import (
     create_blueprint,
     global_context
 )
 
-app = Flask(__name__)
 
-app.jinja_env.auto_reload = True
+def create_app(delay_seconds=0):
+    """
+    Creates flask app.
 
-app.register_blueprint(
-    create_blueprint('mini-viewer', request_delay=0.1),
-    url_prefix='/03-mini-viewer'
-)
+    :param delay_seconds: delays ALL requests with this number of seconds
+    """
+    app = Flask(__name__)
 
-app.register_blueprint(
-    # Simulate slow requests. Each request will take `request_delay` seconds.
-    create_blueprint('04-slow-quesries', request_delay=0.5),
-    url_prefix='/04-slow-queries'
-)
+    app.jinja_env.auto_reload = True
+    app.config['DEBUG'] = True
 
-app.register_blueprint(
-    create_blueprint('05-zoom-in-zoom-out', request_delay=0.4),
-    url_prefix='/05-zoom-in-zoom-out'
-)
-
-app.register_blueprint(
-    create_blueprint('selections-and-actions', request_delay=0.3),
-    url_prefix='/selections-and-actions'
-)
-
-
-@app.route('/')
-def index():
-    return render_template(
-        "index.html",
-        **global_context
+    app.register_blueprint(
+        create_blueprint('mini-viewer', request_delay=0.1),
+        url_prefix='/03-mini-viewer'
     )
 
-
-@app.route('/01-basic-rendering')
-def basic_rendering():
-    return render_template(
-        "features/01-basic-rendering.html",
-        **global_context
+    app.register_blueprint(
+        # Simulate slow requests.
+        # Each request will take `request_delay` seconds.
+        create_blueprint('04-slow-quesries', request_delay=2),
+        url_prefix='/04-slow-queries'
     )
 
-
-@app.route('/02-basic-panel-with-items')
-def basic_panel_with_nodes():
-    return render_template(
-        "features/02-basic-panel-with-items.html",
-        **global_context
+    app.register_blueprint(
+        create_blueprint('05-zoom-in-zoom-out', request_delay=0.4),
+        url_prefix='/05-zoom-in-zoom-out'
     )
 
-
-@app.route('/about')
-def about():
-    return render_template(
-        "about.html",
-        **global_context
+    app.register_blueprint(
+        create_blueprint('selections-and-actions', request_delay=0.3),
+        url_prefix='/selections-and-actions'
     )
 
+    @app.route('/')
+    def index():
+        return render_template(
+            "index.html",
+            **global_context
+        )
 
-@app.route('/favicon.ico')
-def favicon():
-    static_path = os.path.join(app.root_path, 'static')
-    return send_from_directory(
-        static_path,
-        'favicon.ico',
-        mimetype='image/vnd.microsoft.icon'
+    @app.route('/01-basic-rendering')
+    def basic_rendering():
+        return render_template(
+            "features/01-basic-rendering.html",
+            **global_context
+        )
+
+    @app.route('/02-basic-panel-with-items')
+    def basic_panel_with_nodes():
+        return render_template(
+            "features/02-basic-panel-with-items.html",
+            **global_context
+        )
+
+    @app.route('/about')
+    def about():
+        return render_template(
+            "about.html",
+            **global_context
+        )
+
+    @app.route('/favicon.ico')
+    def favicon():
+        static_path = os.path.join(app.root_path, 'static')
+        return send_from_directory(
+            static_path,
+            'favicon.ico',
+            mimetype='image/vnd.microsoft.icon'
+        )
+
+    @app.before_request
+    def slow_request():
+        time.sleep(delay_seconds)
+
+    return app
+
+
+if __name__ == '__main__':
+
+    parser = ArgumentParser()
+    parser.add_argument(
+        '-d',
+        '--delay',
+        type=int,
+        help="Delay all requests with this (integer) number of seconds"
     )
+    args = parser.parse_args()
+    app = create_app(delay_seconds=args.delay)
+    app.run()
