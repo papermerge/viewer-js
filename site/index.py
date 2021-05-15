@@ -14,7 +14,7 @@ from app.viewer import (
 )
 
 
-def create_app(delay_seconds=0):
+def create_app(delay_seconds=0, no_cache=False):
     """
     Creates flask app.
 
@@ -86,7 +86,20 @@ def create_app(delay_seconds=0):
 
     @app.before_request
     def slow_request():
+        """
+        Delay all requests with given number of seconds
+        """
         time.sleep(delay_seconds)
+
+    @app.after_request
+    def add_header(r):
+        """
+        Please don't cache requests
+        """
+        if no_cache:
+            r.headers["Cache-Control"] = "no-store"
+
+        return r
 
     return app
 
@@ -95,11 +108,20 @@ if __name__ == '__main__':
 
     parser = ArgumentParser()
     parser.add_argument(
-        '-d',
-        '--delay',
+        "-d",
+        "--delay",
         type=int,
+        default=0,
         help="Delay all requests with this (integer) number of seconds"
     )
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="Instruct browsers to NOT cache pages"
+    )
     args = parser.parse_args()
-    app = create_app(delay_seconds=args.delay)
+    app = create_app(
+        delay_seconds=args.delay,
+        no_cache=args.no_cache
+    )
     app.run()
