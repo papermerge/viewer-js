@@ -1,7 +1,7 @@
 $foreground: #55daff;
 
 .loader {
-  visibility: hidden;
+  visibility: visible;
 }
 
 .loader, .loader:before, .loader:after {
@@ -11,6 +11,12 @@ $foreground: #55daff;
     width: 1em;
     height: 4em;
   }
+
+
+.loader.small {
+  font-size: 5px;
+}
+
 
 .loader {
 

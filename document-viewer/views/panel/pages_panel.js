@@ -31,7 +31,8 @@ class PagesPanelView extends PanelBaseView {
     render(page) {
         let panel_html,
             page_view,
-            svg_container;
+            svg_container,
+            page_dom_ref;
 
         // render entire collection of pages
         if (!page) {
@@ -39,9 +40,11 @@ class PagesPanelView extends PanelBaseView {
         }
 
         if (this.el) {
-            svg_container = this.el.querySelector(`[data-id='${page.id}'] > .svg-container`);
+            page_dom_ref = this.el.querySelector(`[data-id='${page.id}']`);
+            svg_container = page_dom_ref.querySelector('.svg-container');
             if (svg_container) {
                 svg_container.innerHTML = page.svg_image;
+                page_dom_ref.querySelector('.loader').style.visibility = "hidden";
             }
         }
     }
