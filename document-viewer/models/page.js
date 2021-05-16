@@ -5,7 +5,8 @@ class Page extends Model {
     constructor({
         id,
         page_num,
-        metadata
+        metadata,
+        loading=true
     }) {
         super();
         this.id = id;
@@ -14,6 +15,10 @@ class Page extends Model {
         this._svg_image = undefined;
         this.metadata = metadata;
         this.selected = false;
+        // _loading attribute is responsable
+        // for toggling visibility of loader
+        // UI element
+        this._loading = loading;
     }
 
     toString() {
@@ -36,6 +41,17 @@ class Page extends Model {
 
     get svg_image() {
         return this._svg_image;
+    }
+
+    get loading() {
+        return this._loading;
+    }
+
+    set loading(value) {
+        if (value != this._loading) {
+            this._loading = value;
+            this.trigger("change");
+        }
     }
 }
 

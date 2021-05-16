@@ -13,9 +13,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     thumbnails = new DV.Collection();
     thumbnails.add([
-        new DV.Thumbnail({id: 1, page_num: 1}),
-        new DV.Thumbnail({id: 2, page_num: 2}),
-        new DV.Thumbnail({id: 3, page_num: 3})
+        new DV.Thumbnail({id: 1, page_num: 1, loading: false}),
+        new DV.Thumbnail({id: 2, page_num: 2, loading: false}),
+        new DV.Thumbnail({id: 3, page_num: 3, loading: false})
     ]);
     thumbnails_panel_view = new DV.ThumbnailsPanelView({
         collection: thumbnails,
@@ -26,9 +26,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     pages = new DV.Collection();
     pages.add([
-        new DV.Page({id: 1, page_num: 1}),
-        new DV.Page({id: 2, page_num: 2}),
-        new DV.Page({id: 3, page_num: 3})
+        new DV.Page({id: 1, page_num: 1, loading: false}),
+        new DV.Page({id: 2, page_num: 2, loading: false}),
+        new DV.Page({id: 3, page_num: 3, loading: false})
     ]);
     pages_panel_view = new DV.PagesPanelView({
         collection: pages,

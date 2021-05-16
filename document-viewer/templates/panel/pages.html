@@ -1,7 +1,7 @@
 <div class="panel pages">
     {% for obj in objects %}
         <div class="item page portrait" data-id="{{obj.id}}">
-            <div class="loader visible"></div>
+            <div class="loader {% if obj.loading %} visible {% else %} hidden {% endif %}"></div>
             <div class="svg-container">
             </div>
             <input type="checkbox" name="_selected_action" value="{{ obj.id }}" class="action-select">

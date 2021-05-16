@@ -1,43 +1,26 @@
-import { Model } from "symposium";
+import { Page } from "./page";
 
-class Thumbnail extends Model {
+class Thumbnail extends Page {
     /**
     Thumbnail or page thumbnail is used to abstract
-    a mini version of document page.
+    a mini version of document's page.
     */
     constructor({
         id,
-        page_num
+        page_num,
+        loading
     }) {
-        super();
-        // page id
-        this.id = id;
-        // i.e. page order within specific document version
-        this.page_num = page_num;
-        /*
-        `cpage_num` = client page number.
-        When users changes page order - it changes first `cpage_num`.
-        `cpage_num` is later sent to server side. Only after server side change
-        is commited - the `page_num` attribute is changed here.
-        Basically `this.cpage_num` == `this.page_num` means that server side
-        is synchronized with client side.
-        */
-        this.cpage_num = page_num;
-        // If thumbnail is visually selected
-        this.selected = false;
+        super({
+            id: id,
+            page_num: page_num,
+            // thumnails don't have metadata
+            metadata: undefined,
+            loading: loading
+        });
     }
 
     toString() {
         return `Thumbnail(id=${this.id}, page_num=${this.page_num})`;
-    }
-
-    get is_selected() {
-        return this.selected;
-    }
-
-    toggle_selection() {
-        this.selected = !this.selected;
-        return this.selected;
     }
 }
 
