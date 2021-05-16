@@ -45,7 +45,14 @@ To slow down server side responses with one second AND disable browser's assets 
     $ cd site
     $ python index.py --delay 1 --no-cache
 
+
+Start playground on port 5002:
+
+    $ cd site
+    $ python index.py --port 5002
+
 For all options:
 
     $ cd site
     $ python index.py --help
+

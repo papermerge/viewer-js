@@ -106,8 +106,7 @@ def create_app(delay_seconds=0, no_cache=False):
     return app
 
 
-if __name__ == '__main__':
-
+def create_args():
     parser = ArgumentParser()
     parser.add_argument(
         "-d",
@@ -121,9 +120,28 @@ if __name__ == '__main__':
         action="store_true",
         help="Instruct browsers to NOT cache pages"
     )
+    parser.add_argument(
+        "--host",
+        help="The hostname to listen on",
+        default="127.0.0.1"
+    )
+    parser.add_argument(
+        "-p",
+        "--port",
+        help="The port of the webserver",
+        type=int,
+        default="5000"
+    )
     args = parser.parse_args()
+
+    return args
+
+
+if __name__ == '__main__':
+
+    args = create_args()
     app = create_app(
         delay_seconds=args.delay,
         no_cache=args.no_cache
     )
-    app.run()
+    app.run(args.host, args.port)
