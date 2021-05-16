@@ -20,7 +20,7 @@ Install all nodejs dependent packages:
 
 ## Playground
 
-In `site/` folder there is a `flask` based application used as playground.
+In `site/` folder there is a [flask](https://flask.palletsprojects.com/en/2.0.x/) based application used as playground.
 In order to setup and run playground, use following commands:
 
     $ cd site
