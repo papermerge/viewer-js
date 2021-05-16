@@ -1,4 +1,4 @@
-import { PanelBaseView } from "./base";
+import { PanelBaseView } from "symposium";
 import { renderman } from "../../renderman";
 
 const PAGES_TEMPLATE_NAME = "templates/panel/pages.html";
@@ -26,6 +26,23 @@ class PagesPanelView extends PanelBaseView {
         if (dom_item) {
             dom_item.scrollIntoView();
         }
+    }
+
+    render_to_string() {
+
+        let html_panel = "",
+            context = {};
+
+        if (!this.collection) {
+            return html_panel;
+        }
+        context['objects'] = this.collection;
+        html_panel = renderman.render(
+            this.template_name,
+            context
+        );
+
+        return html_panel;
     }
 
     render(page) {
