@@ -35,7 +35,7 @@ class ThumbnailsPanelView extends PanelBaseView {
 
             if (svg_container) {
                 svg_container.innerHTML = thumbnail.svg_image;
-                thumb_dom_ref.querySelector('.loader').style.visibility = "hidden";
+                thumb_dom_ref.querySelector('.loader').classList.remove("visible");
             }
         }
     }

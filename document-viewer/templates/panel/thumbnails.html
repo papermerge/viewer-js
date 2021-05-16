@@ -1,7 +1,7 @@
 <div class="panel thumbnails">
     {% for obj in objects %}
         <div class="item page-thumbnail portrait" data-id="{{obj.id}}">
-            <div class="loader small"></div>
+            <div class="loader small visible"></div>
             <div class="svg-container">
             </div>
             <input type="checkbox" name="_selected_action" value="{{ obj.id }}" class="action-select">

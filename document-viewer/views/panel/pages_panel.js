@@ -44,7 +44,7 @@ class PagesPanelView extends PanelBaseView {
             svg_container = page_dom_ref.querySelector('.svg-container');
             if (svg_container) {
                 svg_container.innerHTML = page.svg_image;
-                page_dom_ref.querySelector('.loader').style.visibility = "hidden";
+                page_dom_ref.querySelector('.loader').classList.remove("visible");
             }
         }
     }
