@@ -1,13 +1,15 @@
 import { PanelBaseView } from "symposium";
 import { renderman } from "../../renderman";
 
-const PAGES_TEMPLATE_NAME = "templates/panel/pages.html";
-
 
 class PagesPanelView extends PanelBaseView {
 
-    get template_name() {
-        return this.options['template_name'] || PAGES_TEMPLATE_NAME;
+    get default_template_name() {
+        return "templates/panel/pages.html";
+    }
+
+    get default_template_engine() {
+        return renderman;
     }
 
     constructor({
@@ -26,23 +28,6 @@ class PagesPanelView extends PanelBaseView {
         if (dom_item) {
             dom_item.scrollIntoView();
         }
-    }
-
-    render_to_string() {
-
-        let html_panel = "",
-            context = {};
-
-        if (!this.collection) {
-            return html_panel;
-        }
-        context['objects'] = this.collection;
-        html_panel = renderman.render(
-            this.template_name,
-            context
-        );
-
-        return html_panel;
     }
 
     render(page) {

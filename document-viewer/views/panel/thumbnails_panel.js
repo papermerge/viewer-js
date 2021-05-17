@@ -1,13 +1,15 @@
 import { PanelBaseView } from "symposium";
 import { renderman } from "../../renderman";
 
-const THUMBNAILS_TEMPLATE_NAME = "templates/panel/thumbnails.html";
-
 
 class ThumbnailsPanelView extends PanelBaseView {
 
-    get template_name() {
-        return this.options['template_name'] || THUMBNAILS_TEMPLATE_NAME;
+    get default_template_name() {
+        return "templates/panel/thumbnails.html";
+    }
+
+    get default_template_engine() {
+        return renderman;
     }
 
     constructor({
@@ -15,23 +17,6 @@ class ThumbnailsPanelView extends PanelBaseView {
         options={}
     }) {
         super({collection, options});
-    }
-
-    render_to_string() {
-
-        let html_panel = "",
-            context = {};
-
-        if (!this.collection) {
-            return html_panel;
-        }
-        context['objects'] = this.collection;
-        html_panel = renderman.render(
-            this.template_name,
-            context
-        );
-
-        return html_panel;
     }
 
     render(thumbnail) {
