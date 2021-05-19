@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 
 {% block extra_js %}
-  <script type="module" src="static/js/features/05-zoom-in-zoom-out.js"></script>
+  <script type="module" src="static/js/features/06-selections-and-actions.js"></script>
 {% endblock %}
 
 {% block content %}
   <main class="container py-3">
-    <h1>Zoom In/Zoom Out</h1>
+    <h1>Selections and Actions</h1>
     <p>
-        User can zoom in/zoom out pages.
+        Mini viewer with selections and actions.
     </p>
-    <div class="showroom">
+    <div id="selections-and-actions" class="showroom">
+        <div id="ctx-menu"></div>
         <div class="d-flex justify-content-center">
             <select id="zoom">
                 <option value="width">Width</option>

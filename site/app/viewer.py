@@ -31,8 +31,8 @@ global_context = {
             'title': '05 - Zoom In/Zoom Out'
         },
         {
-            'url': '/selections-and-actions',
-            'title': 'Selections and Actions'
+            'url': '/06-selections-and-actions',
+            'title': '06 - Selections and Actions'
         }
     ]
 }

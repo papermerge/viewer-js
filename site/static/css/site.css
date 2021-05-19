@@ -30,3 +30,7 @@ li p {
 .loader {
     position: absolute !important;
 }
+
+.width35 {
+    width: 35rem !important;
+}
