@@ -7,7 +7,6 @@ from flask import (
     render_template,
     send_from_directory
 )
-
 from app.viewer import (
     create_blueprint,
     global_context

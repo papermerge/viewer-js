@@ -22,22 +22,20 @@ let ctx_menu_items = [
             console.log(`Action ${this.id}`);
             console.log(`title ${this.title}`);
             console.log(`selection = ${selection}`);
-            console.log(`parent = ${parent}`);
         }
     },
     {
-        title: 'Rename',
-        icon_class: 'fa fa-edit',
-        id: "#rename",
+        title: 'Delete',
+        icon_class: 'fa fa-delete',
+        id: "#delete",
         enabled: false,
         condition: function({selection, parent}) {
-            return selection.length == 1;
+            return selection.length >= 1;
         },
         run: function({selection, parent}) {
             console.log(`Action ${this.id}`);
             console.log(`title ${this.title}`);
             console.log(`selection = ${selection}`);
-            console.log(`parent = ${parent}`);
         }
     },
     {
