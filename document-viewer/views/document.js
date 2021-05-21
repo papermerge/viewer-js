@@ -21,7 +21,7 @@ import {
 import { ctx_menu_items } from "../ctx_menu_items";
 
 
-class DocumentPanelView extends View {
+class DocumentView extends View {
 
     constructor(options={}) {
 

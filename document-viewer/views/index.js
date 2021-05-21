@@ -1,8 +1,8 @@
 import { ThumbnailsPanelView, PagesPanelView } from "./panel/index";
-import { DocumentPanelView } from "./document_panel";
+import { DocumentView } from "./document";
 
 export {
     ThumbnailsPanelView,
     PagesPanelView,
-    DocumentPanelView,
+    DocumentView,
 };

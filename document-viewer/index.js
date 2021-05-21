@@ -9,7 +9,7 @@ import {
 import {
     ThumbnailsPanelView,
     PagesPanelView,
-    DocumentPanelView
+    DocumentView
 } from "./views/index";
 import { renderman } from "./renderman";
 import { urlconf } from "./urls";
@@ -21,7 +21,7 @@ export {
     Thumbnail,
     ThumbnailsPanelView,
     PagesPanelView,
-    DocumentPanelView,
+    DocumentView,
     Collection,
     urlconf
 };
