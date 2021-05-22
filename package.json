@@ -9,6 +9,7 @@
   ],
   "author": "Eugen Ciur <eugen@papermerge.com>",
   "license": "Apache 2.0",
+  "main": "document-viewer/index.js",
   "devDependencies": {
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",

@@ -164,4 +164,4 @@ class DocumentView extends View {
 
 }
 
-export { DocumentPanelView };
+export { DocumentView };

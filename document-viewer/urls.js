@@ -8,7 +8,7 @@ class UrlConf {
      */
 
     constructor(prefix="/viewer") {
-        this.prefix = prefix;
+        this._prefix = prefix;
     }
 
     document_url(doc) {
@@ -37,6 +37,14 @@ class UrlConf {
 
     root_url() {
         return this.prefix;
+    }
+
+    set prefix(value) {
+        this._prefix = value;
+    }
+
+    get prefix() {
+        return this._prefix;
     }
 }
 
