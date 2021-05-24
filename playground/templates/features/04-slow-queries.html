@@ -13,8 +13,8 @@
         from the server four SVG images and display them (one image per page).
     </p>
     <div class="showroom">
-        <div id="document-panel">
-            <div id="thumbnails-panel">
+        <div class="document-panel">
+            <div class="thumbnails-panel">
                 <div class="panel thumbnails">
                     {% for _ in range(1, 4) %}
                         <div class="item page-thumbnail portrait" style="width: 5rem; height: 7rem;">
@@ -33,7 +33,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div id="pages-panel">
+            <div class="pages-panel">
                 <div class="panel pages">
                     {% for _ in range(1, 4) %}
                         <div class="item page portrait">

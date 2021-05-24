@@ -17,5 +17,5 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     doc = new DV.Document({id: 1});
-    document_panel.initial_fetch(doc);
+    document_panel.open(doc);
 });

@@ -3,6 +3,7 @@ import {
     Collection,
     View
 } from "symposium";
+import { renderman } from "../renderman";
 import {
     EV_PANEL_ITEM_DBLCLICK,
     EV_PANEL_ITEM_CLICK,
@@ -23,30 +24,77 @@ import { ctx_menu_items } from "../ctx_menu_items";
 
 class DocumentView extends View {
 
+    get default_template_name() {
+        return "templates/document.html";
+    }
+
+    get default_template_engine() {
+        return renderman;
+    }
+
+    get ctx_menu_options() {
+        if (this.el) {
+            return {
+                'el': this.el,
+                'el_menu': this.el.querySelector('.ctx-menu')
+            }
+        }
+
+        return this.options['ctx_menu'];
+    }
+
+    get pages_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.pages-panel')
+            }
+        }
+
+        return this.options['pages'];
+    }
+
+    get thumbnails_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.thumbnails-panel')
+            }
+        }
+
+        return this.options['thumbnails'];
+    }
+
     constructor(options={}) {
 
-        super();
+        super(options);
 
-        let that = this;
+        this.options = options;
 
         this.thumbnails_col = new Collection();
+        this.pages_col = new Collection();
+        this.ctx_menu_col = new CtxMenu();
+    }
+
+    create_views() {
+        let that = this;
+
+        if (this.el) {
+            this.render();
+        }
+
         this.thumbnails_view = new ThumbnailsPanelView({
             collection: this.thumbnails_col,
-            options: options['thumbnails']
+            options: this.thumbnails_options
         });
 
-        this.pages_col = new Collection();
         this.pages_view = new PagesPanelView({
             collection: this.pages_col,
-            options: options['pages']
+            options: this.pages_options
         });
 
-        this.ctx_menu_col = new CtxMenu();
         this.ctx_menu_view = new CtxMenuView({
             collection: this.ctx_menu_col,
-            options: options['ctx_menu']
+            options: this.ctx_menu_options
         });
-        this.options = options;
 
         this.pages_col.on("change", this.on_svg_load, this);
         this.pages_col.on("reset", this.on_pages_reset, this);
@@ -85,8 +133,10 @@ class DocumentView extends View {
         this.ctx_menu_col.reset(ctx_menu_items);
     }
 
-    initial_fetch(doc) {
+    open(doc) {
         let that = this;
+
+        this.create_views();
 
         fetch_document(doc).then((pages) => {
 
@@ -103,6 +153,27 @@ class DocumentView extends View {
         }).catch((error) => {
             alert(`Error while fetching document '${doc}': ${error}`);
         });
+    }
+
+    close() {
+        if (this.pages_view) {
+            this.pages_view.undelegateEvents();
+            this.pages_view = undefined;
+        }
+
+        if (this.thumbnails_view) {
+            this.thumbnails_view.undelegateEvents();
+            this.thumbnails_view = undefined;
+        }
+
+        if (this.ctx_menu_view) {
+            this.ctx_menu_view.undelegateEvents();
+            this.ctx_menu_view = undefined;
+        }
+
+        if( this.el ) {
+            this.el.innerHTML = "";
+        }
     }
 
     on_svg_load(page) {
