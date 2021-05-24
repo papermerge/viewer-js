@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/08-open-close.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>Multiple Open/Close Sequences</h1>
+    <p>
+      User can trigger multiple open/close sequences (eventually with different document each). In such case viewer will "appear" and "disappear" i.e. open and close.
+    </p>
+    <div class="showroom">
+      <div>
+        <select id="which-viewer">
+          <option value="#viewer1">Viewer 1</option>
+          <option value="#viewer2">Viewer 2</option>
+        </select>
+
+        <select id="which-action">
+          <option value="open">Open</option>
+          <option value="close">Close</option>
+          <option value="insert-dummy">Insert Dummy</option>
+        </select>
+
+        <select id="which-document">
+          <!-- MUST be in sync with app.viewer.DOCUMETNS values -->
+          <option value=""></option>
+          <option value=""></option>
+        </select>
+
+        <a class="btn btn-success" id="go">Go</a>
+      </div>
+
+      <div id="viewer1">
+      </div>
+      <div id="viewer2">
+      </div>
+    </div>
+  </main>
+{% endblock %}

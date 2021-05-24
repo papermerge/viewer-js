@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/07-default-templates.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>Default templates</h1>
+    <p>
+        When one single DOM reference is provided, the default viewer template will be used.
+    </p>
+    <div class="showroom">
+        <div id="viewer1">
+        </div>
+        <div id="viewer2">
+        </div>
+    </div>
+  </main>
+{% endblock %}

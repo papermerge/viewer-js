@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     DV.urlconf.prefix = '/05-zoom-in-zoom-out';
 
-    document_panel = new DV.DocumentPanelView({
+    document_panel = new DV.DocumentView({
         'pages': {
             'el': document.querySelector('#pages-panel'),
             'template_name': 'panel/pages.html',
