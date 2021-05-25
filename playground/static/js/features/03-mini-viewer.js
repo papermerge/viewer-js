@@ -7,11 +7,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     document_panel = new DV.DocumentView({
         'pages': {
-            'el': document.querySelector('#pages-panel'),
+            'el': document.querySelector('.pages-panel'),
             'template_name': 'panel/pages.html'
         },
         'thumbnails': {
-            'el': document.querySelector("#thumbnails-panel"),
+            'el': document.querySelector(".thumbnails-panel"),
             'template_name': 'panel/thumbnails.html'
         },
     });

@@ -11,9 +11,9 @@
         Mini viewer with selections and actions.
     </p>
     <div id="selections-and-actions" class="showroom">
-        <div id="ctx-menu"></div>
+        <div class="ctx-menu"></div>
         <div class="d-flex justify-content-center">
-            <select id="zoom">
+            <select class="zoom">
                 <option value="width">Width</option>
                 <option value="300">300%</option>
                 <option value="200">200%</option>
@@ -26,8 +26,8 @@
                 <option value="50">50%</option>
             </select>
         </div>
-        <div id="document-panel">
-            <div id="thumbnails-panel">
+        <div class="document-panel">
+            <div class="thumbnails-panel">
                 <div class="panel thumbnails">
                     {% for _ in range(1, 4) %}
                         <div class="item page-thumbnail portrait" style="width: 5rem; height: 7rem;">
@@ -46,7 +46,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div id="pages-panel" class="width35">
+            <div class="pages-panel width35">
                 <div class="panel pages">
                     {% for _ in range(1, 4) %}
                         <div class="item page portrait">

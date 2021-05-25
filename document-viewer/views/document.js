@@ -81,6 +81,11 @@ class DocumentView extends View {
             this.render();
         }
 
+        if (this.el) {
+            // viewer was created from its own template
+            this.zoom = this.el.querySelector(".zoom");
+        }
+
         this.thumbnails_view = new ThumbnailsPanelView({
             collection: this.thumbnails_col,
             options: this.thumbnails_options
@@ -124,6 +129,12 @@ class DocumentView extends View {
             this.on_menu_item_click,
             this
         );
+
+        if (this.zoom) {
+            this.zoom.addEventListener("change", (event) => {
+                that.trigger("zoom", event.target.value);
+            });
+        }
 
         // zoom event sent from outside (by zoom selector)
         this.on("zoom", (zoom_value) => {
@@ -171,7 +182,11 @@ class DocumentView extends View {
             this.ctx_menu_view = undefined;
         }
 
-        if( this.el ) {
+        if (this.zoom) {
+            this.zoom = undefined;
+        }
+
+        if ( this.el ) {
             this.el.innerHTML = "";
         }
     }
