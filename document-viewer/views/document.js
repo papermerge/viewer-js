@@ -2,14 +2,14 @@ import {
     CtxMenu,
     Collection,
     View
-} from "symposium";
+} from "@papermerge/symposium";
 import { renderman } from "../renderman";
 import {
     EV_PANEL_ITEM_DBLCLICK,
     EV_PANEL_ITEM_CLICK,
     EV_PANEL_ITEM_SELECTED,
     EV_CTX_MENU_ITEM_CLICK
-} from "symposium";
+} from "@papermerge/symposium";
 
 import { Thumbnail } from "../models/thumbnail";
 import { ThumbnailsPanelView, PagesPanelView } from "./panel/index";
@@ -167,6 +167,12 @@ class DocumentView extends View {
     }
 
     close() {
+        /*
+        Removes:
+
+            * bound event listeners
+            * DOM element
+        */
         if (this.pages_view) {
             this.pages_view.undelegateEvents();
             this.pages_view = undefined;
@@ -184,6 +190,15 @@ class DocumentView extends View {
 
         if (this.zoom) {
             this.zoom = undefined;
+        }
+
+        if (this.pages_col) {
+            // removes all event listeners
+            this.pages_col.off();
+        }
+
+        if (this.thumbnails_col) {
+            this.thumbnails_col.off();
         }
 
         if ( this.el ) {
@@ -229,7 +244,6 @@ class DocumentView extends View {
     }
 
     on_pages_reset() {
-
         this.pages_view.render();
         this.pages_col.forEach((page) => {
             fetch_page_svg(page);

@@ -58,7 +58,6 @@ def create_app(delay_seconds=0, no_cache=False):
         url_prefix='/08-open-close'
     )
 
-
     @app.route('/')
     def index():
         return render_template(

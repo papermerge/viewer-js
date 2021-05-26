@@ -39,7 +39,7 @@ global_context = {
             'title': '07 - Default Templates'
         },
         {
-            'url': '/08-open-close.html',
+            'url': '/08-open-close',
             'title': '08 - Open/Close Sequences'
         }
     ]
@@ -93,6 +93,14 @@ DOCUMENT = {
             }
         ],  # pages
     },
+    2: {
+        'pages': [
+            {
+                'id': 5,
+                'page_num': 1
+            },
+        ],  # pages
+    },
 }
 
 
@@ -102,10 +110,15 @@ def page_svg(page_id):
 
     It reads SVG file from media folder.
     """
+    document_id = "document-1"
+
+    if int(page_id) == 5:
+        document_id = "document-2"
+
     abs_path = _folder_abs_path("media")
     svg_file_path = os.path.join(
         abs_path,
-        "document-1",
+        document_id,
         f"page-{page_id}.svg"
     )
 
@@ -136,7 +149,6 @@ def create_blueprint(name, request_delay=0):
         name,  # import_name
         template_folder='templates',  # same folder as for the main app
         static_folder=_folder_abs_path("static")  # same as for main app
-
     )
 
     @blueprint.route('/')

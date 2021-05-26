@@ -1,4 +1,4 @@
-import { Collection } from "symposium";
+import { Collection } from "@papermerge/symposium";
 import { Page, Document } from "./models/index";
 import { urlconf } from "./urls";
 
