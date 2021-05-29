@@ -14,7 +14,7 @@ class UrlConf {
     document_url(doc) {
         let doc_id;
 
-        if (doc instanceof Document) {
+        if (doc && doc.id) {
             doc_id = doc.id;
         } else {
             doc_id = doc;
@@ -26,7 +26,7 @@ class UrlConf {
     page_url(page) {
         let page_id;
 
-        if (page instanceof Page) {
+        if (page && page.id) {
             page_id = page.id;
         } else {
             page_id = page;

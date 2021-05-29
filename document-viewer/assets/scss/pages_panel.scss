@@ -1,5 +1,10 @@
 @import "./mixins.scss";
 
+.panel.pages {
+    display: flex;
+    flex-direction: column;
+}
+
 .pages-panel {
 
     height: 40rem;

@@ -1,8 +1,8 @@
 @import "./mixins.scss";
 
-.thumbnails-panel {
-
-
+.panel.thumbnails {
+    display: flex;
+    flex-direction: column;
 }
 
 .page-thumbnail {
