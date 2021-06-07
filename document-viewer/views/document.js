@@ -153,6 +153,10 @@ class DocumentView extends View {
 
             let new_thumb_col = new Collection();
 
+            pages.forEach((page) => {
+                page.document_id = doc.id;
+            });
+
             that.pages_col.reset(pages);
             new_thumb_col = pages.map((page) => {
                 return new Thumbnail({

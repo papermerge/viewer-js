@@ -24,15 +24,7 @@ class UrlConf {
     }
 
     page_url(page) {
-        let page_id;
-
-        if (page && page.id) {
-            page_id = page.id;
-        } else {
-            page_id = page;
-        }
-
-        return `${this.prefix}/page/${page_id}`;
+        return `${this.prefix}/document/${page.document_id}/page/${page.page_num}`;
     }
 
     root_url() {

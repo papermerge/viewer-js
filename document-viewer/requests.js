@@ -27,7 +27,7 @@ function fetch_document(doc) {
         let pages_col = new Collection(),
             pages_arr;
 
-        pages_arr = json_response['pages'].map((item_attrs) => {
+        pages_arr = json_response['document']['pages'].map((item_attrs) => {
             return new Page(item_attrs);
         });
         pages_col.add(pages_arr);
