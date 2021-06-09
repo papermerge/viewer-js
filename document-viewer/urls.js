@@ -11,6 +11,18 @@ class UrlConf {
         this._prefix = prefix;
     }
 
+    folder_url(folder) {
+        let folder_id;
+
+        if (folder && folder.id) {
+            folder_id = folder.id;
+        } else {
+            folder_id = folder;
+        }
+
+        return `${this.prefix}/folder/${folder_id}`;
+    }
+
     document_url(doc) {
         let doc_id;
 

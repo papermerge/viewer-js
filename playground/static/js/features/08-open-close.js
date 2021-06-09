@@ -1,7 +1,7 @@
 
-function _open(viewer, doc) {
+function _open(viewer, doc, breadcrumb) {
     if (viewer) {
-        viewer.open(doc);
+        viewer.open({doc, breadcrumb});
     }
 }
 
@@ -30,6 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let DV = DocumentViewer,
         viewer1,
         viewer2,
+        breadcrumb,
         go,
         which_viewer,
         which_action,
@@ -59,12 +60,22 @@ window.addEventListener('DOMContentLoaded', () => {
             doc = undefined;
         } else if (which_doc.value == "1") {
             doc = new DV.Document({id: 1, title: "Document 1.pdf"});
+            breadcrumb = new DV.Collection();
+            breadcrumb.add(
+                new DV.Folder({id: 1, title: "My Documents"})
+            );
+            breadcrumb.add(doc);
         } else if (which_doc.value == "2") {
             doc = new DV.Document({id: 2, title: "Document 2.pdf"});
+            breadcrumb = new DV.Collection();
+            breadcrumb.add(
+                new DV.Folder({id: 1, title: "My Documents"})
+            );
+            breadcrumb.add(doc);
         }
 
         if (which_action.value == "open") {
-            _open(viewer, doc);
+            _open(viewer, doc, breadcrumb);
         } else if ( which_action.value == "close" ) {
             _close(viewer);
         } else if (which_action.value == "insert-dummy") {

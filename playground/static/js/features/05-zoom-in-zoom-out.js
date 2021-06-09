@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     doc = new DV.Document({id: 1});
-    document_panel.open(doc);
+    document_panel.open({doc});
 
     zoom_selector = document.querySelector('.zoom');
     if (zoom_selector) {
