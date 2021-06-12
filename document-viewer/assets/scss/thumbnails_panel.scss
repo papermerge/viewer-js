@@ -2,7 +2,11 @@
 
 .panel.thumbnails {
     display: flex;
+    height: 100%;
+    overflow: scroll;
     flex-direction: column;
+    background-color: #534f4f;
+    color: white;
 }
 
 .page-thumbnail {
