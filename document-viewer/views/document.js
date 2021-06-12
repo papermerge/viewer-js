@@ -17,6 +17,8 @@ import { Thumbnail } from "../models/thumbnail";
 import { ThumbnailsPanelView, PagesPanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
 import { CtxMenuView } from "./ctx_menu";
+import { DropdownMenu } from "../models/dropdown_menu";
+import { DropdownMenuView } from "./dropdown_menu";
 
 import {
     fetch_document,
@@ -37,6 +39,8 @@ class DocumentView extends View {
         this.pages_col = new Collection();
         this.breadcrumb_col = new Breadcrumb();
         this.ctx_menu_col = new CtxMenu();
+        this.dropdown_menu_col = new DropdownMenu();
+        this.thumbnails_visible = true;
     }
 
     get default_template_name() {
@@ -56,6 +60,17 @@ class DocumentView extends View {
         }
 
         return this.options['ctx_menu'];
+    }
+
+    get dropdown_menu_options() {
+        if (this.el) {
+            return {
+                'el': this.el,
+                'el_menu': this.el.querySelector('.dropdown-menu')
+            }
+        }
+
+        return this.options['dropdown_menu'];
     }
 
     get breadcrumb_options() {
@@ -107,6 +122,11 @@ class DocumentView extends View {
         this.thumbnails_view = new ThumbnailsPanelView({
             collection: this.thumbnails_col,
             options: this.thumbnails_options
+        });
+
+        this.dropdown_menu_view = new DropdownMenuView({
+            collection: this.dropdown_menu_col,
+            options: this.dropdown_menu_options
         });
 
         this.pages_view = new PagesPanelView({
