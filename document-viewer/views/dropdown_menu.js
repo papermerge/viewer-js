@@ -6,6 +6,7 @@ class DropdownMenuView extends View {
     constructor({collection, options}) {
         super(options);
 
+        this.collection = collection;
         this.thumbnails_visible = true;
         this.details_visible = true;
     }
@@ -16,6 +17,10 @@ class DropdownMenuView extends View {
 
     get default_template_engine() {
         return renderman;
+    }
+
+    get default_context() {
+        return {'items': this.collection};
     }
 
     events() {
