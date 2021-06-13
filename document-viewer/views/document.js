@@ -191,7 +191,7 @@ class DocumentView extends View {
             that.pages_view.trigger("zoom", zoom_value);
         });
 
-        this.dropdown_menu_view.on("thumbnails-toggle", this.on_thumbnails_toggle, this);
+        this.dropdown_menu_view.on("dropdown_menu_item_click", this.dropdown_menu_item_click, this);
 
         this.ctx_menu_col.reset(ctx_menu_items);
         this.dropdown_menu_col.reset(dropdown_menu_items);
@@ -349,8 +349,10 @@ class DocumentView extends View {
         this.thumbnails_view.render();
     }
 
-    on_thumbnails_toggle(thumbnails_visible) {
-        if (thumbnails_visible) {
+    dropdown_menu_item_click(dropdown_item) {
+        dropdown_item.is_checked = !dropdown_item.is_checked;
+
+        if (dropdown_item.is_checked) {
             this.thumbnails_view.show();
         } else {
             this.thumbnails_view.hide();

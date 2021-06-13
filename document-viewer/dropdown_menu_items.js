@@ -1,4 +1,4 @@
-import { DropdownItem } from "./dropdown_item";
+import { DropdownItem } from "./models/dropdown_item";
 
 
 let dropdown_menu_items = [

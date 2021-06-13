@@ -34,9 +34,24 @@ class DropdownMenuView extends View {
     }
 
     on_click(event) {
-        let target = event.currentTarget;
+        let target = event.currentTarget,
+            value,
+            item,
+            is_checked;
 
-        console.log(target.dataset.value);
+        value = target.dataset.value;
+
+        item = this.collection.get({value});
+
+        if (!item) {
+            console.error(`Dropdown menu: item not found ${value}`);
+            return;
+        }
+
+        this.trigger(
+            "dropdown_menu_item_click",
+            item
+        );
     }
 }
 
