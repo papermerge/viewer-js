@@ -25,6 +25,7 @@ import {
     fetch_page_svg
 } from "../requests";
 import { ctx_menu_items } from "../ctx_menu_items";
+import { dropdown_menu_items } from "../dropdown_menu_items";
 
 
 class DocumentView extends View {
@@ -150,6 +151,9 @@ class DocumentView extends View {
         this.ctx_menu_col.on("reset", this.render_ctx_menu, this);
         this.ctx_menu_col.on("change", this.render_ctx_menu, this);
 
+        this.dropdown_menu_col.on("reset", this.render_dropdown_menu, this);
+        this.dropdown_menu_col.on("change", this.render_dropdown_menu, this);
+
         this.breadcrumb_col.on("reset", this.render_breadcrumb, this);
         this.breadcrumb_col.on("change-parent", this.render_breadcrumb, this);
 
@@ -190,6 +194,7 @@ class DocumentView extends View {
         this.dropdown_menu_view.on("thumbnails-toggle", this.on_thumbnails_toggle, this);
 
         this.ctx_menu_col.reset(ctx_menu_items);
+        this.dropdown_menu_col.reset(dropdown_menu_items);
     }
 
     open({doc, breadcrumb}) {
@@ -354,6 +359,10 @@ class DocumentView extends View {
 
     render_ctx_menu() {
         this.ctx_menu_view.render();
+    }
+
+    render_dropdown_menu() {
+        this.dropdown_menu_view.render();
     }
 
     render_breadcrumb() {
