@@ -195,6 +195,7 @@ class DocumentView extends View {
 
         this.ctx_menu_col.reset(ctx_menu_items);
         this.dropdown_menu_col.reset(dropdown_menu_items);
+        console.log(dropdown_menu_items);
     }
 
     open({doc, breadcrumb}) {
