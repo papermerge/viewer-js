@@ -5,10 +5,7 @@ class DropdownMenuView extends View {
 
     constructor({collection, options}) {
         super(options);
-
         this.collection = collection;
-        this.thumbnails_visible = true;
-        this.details_visible = true;
     }
 
     get default_template_name() {
