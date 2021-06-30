@@ -321,7 +321,7 @@ class DocumentView extends View {
         */
         if (!node) {
             // proxy event to interested parties
-            this.trigger("close-document");
+            this.trigger("close-document", undefined);
         } else if (node.is_folder) {
             // proxy event to interested parties
             this.trigger("close-document", node);
