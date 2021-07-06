@@ -20,7 +20,7 @@ class UrlConf {
             folder_id = folder;
         }
 
-        return `${this.prefix}/folder/${folder_id}`;
+        return `${this.prefix}/folder/${folder_id}/`;
     }
 
     document_url(doc) {
@@ -32,11 +32,11 @@ class UrlConf {
             doc_id = doc;
         }
 
-        return `${this.prefix}/document/${doc_id}`;
+        return `${this.prefix}/document/${doc_id}/`;
     }
 
     page_url(page) {
-        return `${this.prefix}/document/${page.document_id}/page/${page.page_num}`;
+        return `${this.prefix}/document/${page.document_id}/page/${page.page_num}/`;
     }
 
     root_url() {
