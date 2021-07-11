@@ -235,6 +235,7 @@ class DocumentView extends View {
             });
             that.thumbnails_col.reset(new_thumb_col);
             that.breadcrumb_col.reset(breadcrumb);
+            that.trigger("open", doc);
         }).catch((error) => {
             alert(`Error while fetching document '${doc}': ${error}`);
         });
