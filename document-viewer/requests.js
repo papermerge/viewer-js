@@ -6,7 +6,8 @@ import { urlconf } from "./urls";
 function fetch_document(doc) {
     let options,
         response,
-        promise;
+        promise,
+        url;
 
     if (!doc instanceof Document) {
         throw new ValueError("Input is not instance of Document");
@@ -17,7 +18,9 @@ function fetch_document(doc) {
             'Content-Type': 'application/json'
         }
     }
-    response = fetch(urlconf.document_url(doc), options).then((response) => {
+    url = urlconf.url('document', {document_id: doc.id});
+
+    response = fetch(url, options).then((response) => {
         if (response.status != 200) {
             throw new Error(response.statusText);
         }
@@ -53,7 +56,10 @@ function fetch_page_svg(page) {
         }
     }
 
-    url = urlconf.page_url(page);
+    url = urlconf.url('document_page', {
+        document_id: page.document_id,
+        page_num: page.page_num
+    });
 
     response = fetch(url, options).then((response) => {
         if (response.status != 200) {

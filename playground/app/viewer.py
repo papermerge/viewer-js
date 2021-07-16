@@ -156,7 +156,7 @@ def create_blueprint(name, request_delay=0):
             **global_context
         )
 
-    @blueprint.route('/document/<int:document_id>')
+    @blueprint.route('/document/<int:document_id>/')
     def browser_document(document_id):
 
         time.sleep(request_delay)
@@ -175,7 +175,7 @@ def create_blueprint(name, request_delay=0):
             **document_dict
         )
 
-    @blueprint.route('/document/<int:doc_id>/page/<int:page_id>')
+    @blueprint.route('/document/<int:doc_id>/page/<int:page_id>/')
     def browser_page(doc_id, page_id):
 
         time.sleep(request_delay)

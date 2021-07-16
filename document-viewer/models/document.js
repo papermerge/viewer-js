@@ -16,7 +16,7 @@ class Document extends Model {
     }
 
     get href() {
-        return urlconf.document_url(this.id);
+        return urlconf.url('document', {document_id: this.id});
     }
 }
 
